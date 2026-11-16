@@ -12,6 +12,14 @@ test('bundled skill is valid and covers the actual tool workflow', () => {
   assert.match(chromeUseSkill.content, /不可信数据/);
 });
 
+// DSH validates name/description/invocation when a runtime skill registers, but
+// only checks `source` when the body loads, so omitting it surfaces later as
+// `loaded skill "dsh-chrome-use" source must be a string` instead of at startup.
+test('skill declares the source the DSH registry requires when loading the body', () => {
+  assert.equal(typeof chromeUseSkill.source, 'string');
+  assert.equal(chromeUseSkill.source, 'runtime');
+});
+
 test('registration goes through the plugin lifetime and exposes the skill to the catalog', () => {
   let registered;
   let usedEffect = false;
