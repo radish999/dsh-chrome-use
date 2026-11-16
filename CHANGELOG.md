@@ -3,6 +3,12 @@
 版本号遵循语义化版本。格式参考 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)。
 扩展版本和 Harness 插件版本始终一起发布，数字保持一致。
 
+## [0.10.1] - 2026-11-16
+
+### 修复
+
+- 补上运行期 skill 缺失的 `source` 字段。此前 skill 会出现在会话目录里，但读取正文时 DSH 报 `loaded skill "dsh-chrome-use" source must be a string`，导致使用指南无法加载；现在注册时声明 `source: 'runtime'`，并加了回归测试。
+
 ## [0.10.0] - 2026-11-13
 
 ### 新增
